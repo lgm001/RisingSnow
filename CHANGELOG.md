@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Build
 
 - `dotnet build RisingSnow.slnx -c Release` succeeded for the split solution.
+- Initial GitHub publish: [https://github.com/lgm001/RisingSnow](https://github.com/lgm001/RisingSnow) (`413010f`).
 
 ## Earlier development (pre-1.0.0 tag)
 

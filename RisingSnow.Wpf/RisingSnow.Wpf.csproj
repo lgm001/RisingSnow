@@ -11,6 +11,7 @@
     <Authors>RisingSnow contributors</Authors>
     <Description>Reusable WPF rising-snow background: SnowCanvas plus RisingSnowBackground UserControl.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/lgm001/RisingSnow</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

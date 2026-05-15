@@ -2,6 +2,8 @@
 
 WPF **rising snow** background: a small **`RisingSnow.Wpf`** class library you can reference from other desktop apps, plus this **`RisingSnow`** sample executable.
 
+**Repository:** [github.com/lgm001/RisingSnow](https://github.com/lgm001/RisingSnow)
+
 Licensed under the [MIT License](LICENSE).
 
 ## Repository layout
