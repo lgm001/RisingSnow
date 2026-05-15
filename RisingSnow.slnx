@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="RisingSnow.Wpf/RisingSnow.Wpf.csproj" />
   <Project Path="RisingSnow/RisingSnow.csproj" />
 </Solution>

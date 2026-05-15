@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>RisingSnow.Wpf</RootNamespace>
+    <AssemblyName>RisingSnow.Wpf</AssemblyName>
+    <Version>1.0.0</Version>
+    <Authors>RisingSnow contributors</Authors>
+    <Description>Reusable WPF rising-snow background: SnowCanvas plus RisingSnowBackground UserControl.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>

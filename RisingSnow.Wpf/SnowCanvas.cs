@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace RisingSnow;
+namespace RisingSnow.Wpf;
 
 /// <summary>
 /// Rising snow: soft flakes spawn along the bottom band, accelerate upward, drift horizontally, and cull off the top.

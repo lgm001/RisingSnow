@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RisingSnow"
+        xmlns:rs="http://schemas.risingsnow.dev/wpf"
         mc:Ignorable="d"
         Title="RisingSnow"
         Height="600"
@@ -11,15 +11,9 @@
         WindowStartupLocation="CenterScreen"
         Background="#0A0F18">
     <Grid>
-        <local:SnowCanvas x:Name="Snow"
-                          ClipToBounds="True"
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch"
-                          SpawnRate="40"
-                          Intensity="1"
-                          SpeedMultiplier="1"
-                          DriftScale="1"
-                          MaxParticles="400"
-                          MaxLifetimeSeconds="12" />
+        <rs:RisingSnowBackground x:Name="SnowBackground"
+                                 ClipToBounds="True"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch" />
     </Grid>
 </Window>

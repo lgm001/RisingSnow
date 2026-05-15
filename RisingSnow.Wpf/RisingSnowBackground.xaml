@@ -1,0 +1,19 @@
+<UserControl x:Class="RisingSnow.Wpf.RisingSnowBackground"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RisingSnow.Wpf"
+             Background="Transparent"
+             ClipToBounds="True">
+    <Grid>
+        <local:SnowCanvas x:Name="SnowHost"
+                          ClipToBounds="True"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          SpawnRate="40"
+                          Intensity="1"
+                          SpeedMultiplier="1"
+                          DriftScale="1"
+                          MaxParticles="400"
+                          MaxLifetimeSeconds="12" />
+    </Grid>
+</UserControl>
