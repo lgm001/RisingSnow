@@ -39,8 +39,7 @@ public sealed class SnowCanvas : FrameworkElement
         nameof(Intensity),
         typeof(double),
         typeof(SnowCanvas),
-        new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender, null, CoerceIntensity),
-        ValidateUnitInterval);
+        new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender, null, CoerceIntensity));
 
     public static readonly DependencyProperty SpeedMultiplierProperty = DependencyProperty.Register(
         nameof(SpeedMultiplier),
@@ -170,12 +169,10 @@ public sealed class SnowCanvas : FrameworkElement
     private static bool ValidateBandFraction(object value) =>
         value is double d && d >= 0 && d <= 1;
 
-    private static bool ValidateUnitInterval(object value) =>
-        value is double d && !double.IsNaN(d) && !double.IsInfinity(d);
-
     private static object CoerceIntensity(DependencyObject d, object baseValue)
     {
-        double v = (double)baseValue;
+        if (baseValue is not double v || double.IsNaN(v) || double.IsInfinity(v))
+            return 1.0;
         return Math.Clamp(v, 0, 1);
     }
 
