@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `SnowCanvas`: default spawn band is the **bottom 1%** of height (`SpawnBandMin` 0, `SpawnBandMax` 0.01); flakes are **larger** and drawn with a **soft multi-layer glow** (stacked translucent ellipses, no bitmap effects).
+
 ### Fixed
 
 - `Intensity` dependency property: removed strict validation so values outside 0–1 are **coerced** (and non-finite values fall back to 1), matching typical binding scenarios.

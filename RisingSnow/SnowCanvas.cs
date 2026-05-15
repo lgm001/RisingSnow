@@ -81,14 +81,14 @@ public sealed class SnowCanvas : FrameworkElement
         nameof(SpawnBandMin),
         typeof(double),
         typeof(SnowCanvas),
-        new FrameworkPropertyMetadata(0.10, FrameworkPropertyMetadataOptions.AffectsRender),
+        new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender),
         ValidateBandFraction);
 
     public static readonly DependencyProperty SpawnBandMaxProperty = DependencyProperty.Register(
         nameof(SpawnBandMax),
         typeof(double),
         typeof(SnowCanvas),
-        new FrameworkPropertyMetadata(0.15, FrameworkPropertyMetadataOptions.AffectsRender),
+        new FrameworkPropertyMetadata(0.01, FrameworkPropertyMetadataOptions.AffectsRender),
         ValidateBandFraction);
 
     public bool IsRunning
@@ -146,14 +146,14 @@ public sealed class SnowCanvas : FrameworkElement
         set => SetValue(BackgroundColorProperty, value);
     }
 
-    /// <summary>Lower edge of spawn band as fraction of height from bottom (e.g. 0.10 = bottom 10%).</summary>
+    /// <summary>Lower edge of spawn band as fraction of height from bottom (e.g. 0 = viewport bottom).</summary>
     public double SpawnBandMin
     {
         get => (double)GetValue(SpawnBandMinProperty);
         set => SetValue(SpawnBandMinProperty, value);
     }
 
-    /// <summary>Upper edge of spawn band as fraction of height from bottom.</summary>
+    /// <summary>Upper edge of spawn band as fraction of height from bottom (e.g. 0.01 = top of a 1% band).</summary>
     public double SpawnBandMax
     {
         get => (double)GetValue(SpawnBandMaxProperty);
@@ -257,7 +257,7 @@ public sealed class SnowCanvas : FrameworkElement
         double yMin = h * (1 - bandHi);
         double yMax = h * (1 - bandLo);
         if (yMax <= yMin)
-            yMin = h * 0.85;
+            yMin = Math.Max(0, h * (1 - bandHi) - 1);
 
         double x0 = _rng.NextDouble() * w;
         double y0 = yMin + _rng.NextDouble() * (yMax - yMin);
@@ -265,7 +265,8 @@ public sealed class SnowCanvas : FrameworkElement
         double vy0 = (18 + _rng.NextDouble() * 16) * speedMul;
         double ay = (10 + _rng.NextDouble() * 32) * speedMul;
 
-        double r = (1.5 + _rng.NextDouble() * 2.5) / 2;
+        // Radius ~1.1–2.75 device-independent units (slightly larger than first revision).
+        double r = (2.25 + _rng.NextDouble() * 3.25) / 2;
         double op = 0.4 + _rng.NextDouble() * 0.5;
 
         double driftAmp = 0.5 + _rng.NextDouble() * 1.5;
@@ -288,11 +289,30 @@ public sealed class SnowCanvas : FrameworkElement
 
         Color baseColor = FlakeColor;
         foreach (Snowflake s in _flakes)
-        {
-            byte a = (byte)Math.Clamp((int)Math.Round(255 * s.Opacity), 0, 255);
-            var brush = new SolidColorBrush(Color.FromArgb(a, baseColor.R, baseColor.G, baseColor.B));
-            dc.DrawEllipse(brush, null, new Point(s.X, s.Y), s.Radius, s.Radius);
-        }
+            DrawGlowingFlake(dc, new Point(s.X, s.Y), s.Radius, s.Opacity, baseColor);
+    }
+
+    /// <summary>Soft multi-layer disc (no bitmap effects) for a subtle glow around each flake.</summary>
+    private static void DrawGlowingFlake(DrawingContext dc, Point center, double radius, double opacity, Color rgb)
+    {
+        static SolidColorBrush Brush(byte a, Color c) =>
+            new(Color.FromArgb(a, c.R, c.G, c.B));
+
+        double o = Math.Clamp(opacity, 0, 1);
+        Point p = center;
+
+        // Wide, faint halo
+        byte a0 = (byte)Math.Clamp((int)Math.Round(255 * o * 0.10), 0, 255);
+        dc.DrawEllipse(Brush(a0, rgb), null, p, radius * 1.65, radius * 1.65);
+
+        byte a1 = (byte)Math.Clamp((int)Math.Round(255 * o * 0.18), 0, 255);
+        dc.DrawEllipse(Brush(a1, rgb), null, p, radius * 1.35, radius * 1.35);
+
+        byte a2 = (byte)Math.Clamp((int)Math.Round(255 * o * 0.42), 0, 255);
+        dc.DrawEllipse(Brush(a2, rgb), null, p, radius * 1.12, radius * 1.12);
+
+        byte a3 = (byte)Math.Clamp((int)Math.Round(255 * o), 0, 255);
+        dc.DrawEllipse(Brush(a3, rgb), null, p, radius, radius);
     }
 
     private sealed class Snowflake(

@@ -27,7 +27,7 @@ dotnet run --project RisingSnow/RisingSnow.csproj
 | `MaxParticles` | Upper bound on concurrent flakes. |
 | `MaxLifetimeSeconds` | Removes flakes that live too long. |
 | `FlakeColor` / `BackgroundColor` | Visual tuning. |
-| `SpawnBandMin` / `SpawnBandMax` | Fraction of height from the bottom defining the spawn band (default 10–15%). |
+| `SpawnBandMin` / `SpawnBandMax` | Fraction of height from the bottom defining the spawn band (defaults **0–1%**: bottom sliver). |
 
 Example binding (when you add a `DataContext`):
 
