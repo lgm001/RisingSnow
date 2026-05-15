@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [`RisingSnow.code-workspace`](RisingSnow.code-workspace) for VS Code / Cursor multi-root workspace at repo root.
+
 ## [1.0.0] - 2026-05-15
 
 ### Added

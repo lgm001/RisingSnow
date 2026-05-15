@@ -20,6 +20,10 @@ Licensed under the [MIT License](LICENSE).
 
 - [.NET SDK](https://dotnet.microsoft.com/download) with **.NET 10** (`net10.0-windows`).
 
+## Editor workspace
+
+Open [`RisingSnow.code-workspace`](RisingSnow.code-workspace) in **Visual Studio Code** or **Cursor** to load the repo root (solution `RisingSnow.slnx`, projects under `RisingSnow/` and `RisingSnow.Wpf/`).
+
 ## Build and run the demo
 
 ```powershell
