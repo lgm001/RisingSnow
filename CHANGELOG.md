@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `Intensity` dependency property: removed strict validation so values outside 0–1 are **coerced** (and non-finite values fall back to 1), matching typical binding scenarios.
+
 ### Added
 
 - `SnowCanvas`: `FrameworkElement` rising-snow simulation (`DispatcherTimer` + wall-clock `dt`, spawn/cull, `OnRender` ellipses) modeled after the Particles.WPF canvas pattern.
