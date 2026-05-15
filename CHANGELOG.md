@@ -16,3 +16,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Build
 
 - Agent `dotnet build RisingSnow.slnx -c Release` succeeded.
+- Commit: `8e0ca8c` (initial SnowCanvas and docs).
